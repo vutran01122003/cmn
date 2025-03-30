@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="index.css" />
+</head>
+<body>
+  <div class="content">
+    <form id="create" method="POST" action="/" enctype="multipart/form-data">
+      <input type="text" name="ma_sp" placeholder="Mã sản phẩm" />
+      <input type="text" name="ten_sp" placeholder="Tên sản phẩm" />
+      <input type="number" name="so_luong" placeholder="Số lượng sản phẩm" />
+      <input type="file" name="image"/>
+      <input type="submit" value="Submit" />
+    </form>
+    <form id="delete" method="POST" action="/delete" enctype="multipart/form-data">
+      <div class="title">Danh sách sản phẩm<input type="submit" value="Xóa" /></div>
+      <table border="1">
+        <tr>
+          <th>Mã SP</th>
+          <th>Tên SP</th>
+          <th>Số Lượng</th>
+          <th>Image</th>
+          <th>Chọn</th>
+        </tr>
+        <% for (let i = 0; i < products.length; i++) { %>
+        <tr>
+          <td><%= products[i].ma_sp.S %></td>
+          <td><%= products[i].ten_sp.S %></td>
+          <td><%= products[i].so_luong.N %></td>
+          <td>
+              <img width="50px" src="<%= products[i].image_url?.S %>" />
+          </td>
+          <td><input type="checkbox" name="ma_sp" value="<%= products[i].ma_sp.S %>" /></td>
+        </tr>
+        <% } %>
+      </table>
+    </form>
+  </div>
+</body>
+</html>
